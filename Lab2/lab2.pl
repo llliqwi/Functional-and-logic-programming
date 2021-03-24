@@ -1,24 +1,3 @@
-country(ms1,0).
-country(t26,0).
-country(cy152,0).
-country(is2,0).
-country(kv1,0).
-country(pzic,1).
-country(pz4h,1).
-country(stug2,1).
-country(tiger,1).
-country(mouse,1).
-country(t1,2).
-country(stuart,2).
-country(sherman,2).
-country(hellcat,2).
-country(t57heavy,2).
-country(cruiser,3).
-country(valentine,3).
-country(churchill,3).
-country(at,3).
-country(conqueror,3).
-
 
 country(ms1,0).
 country(t26,0).
