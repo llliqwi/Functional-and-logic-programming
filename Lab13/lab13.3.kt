@@ -1,5 +1,5 @@
 fun main(args: Array<String>)
 {
-    val name = if (args.size > 0) args[0] else "Users"
+    val name = if (args.isNotEmpty()) args[0] else "Users"
     println("Hello ,$name")
 }
