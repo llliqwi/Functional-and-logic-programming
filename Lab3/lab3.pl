@@ -66,4 +66,12 @@ kolvo_nedel3_down(_,0,X,X):-!.
 kolvo_nedel3_down(N,I,P,X):- ((0 is N mod I, N1 is I mod 3, N1\=0)->
     P1 is P + 1 ; P1 = P),I1 is I - 1, kolvo_nedel3_down(N,I1,P1,X).
 
+mult_up(0,1):-!.
+mult_up(N,Mult):- N1 is N div 10, mult_up(N1,Mult1), Mult is Mult1 * (N mod 10).
 
+sum_del(_,0,_,_,Sum,Sum):-!.
+sum_del(N,I,S,M,Sum1,Sum):- (0 is N mod I, nod(S,I,Nod1),Nod1 = 1, nod(M,I,Nod),
+     Nod \= 1) -> (Sum2 is Sum1 + I, I1 is I - 1,sum_del(N,I1,S,M,Sum2,Sum)) ;
+    (I1 is I - 1,sum_del(N,I1,S,M,Sum1,Sum)).
+task_15 :- read(N), sum_down(N,S), mult_up(N,M), sum_del(N,N,S,M,0,Sum),
+    write(Sum).
