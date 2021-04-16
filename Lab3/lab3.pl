@@ -30,3 +30,7 @@ sum(N,CurX,X):-N1 is N mod 10,N2 is N div 10,X2 is CurX+N1,sum(N2,X2,X).
 
 maxUp(X,X):- X<10,!.         
 maxUp(X,N):- X1 is X div 10, X2 is X mod 10, maxUp(X1,N1), ( X2<N1 ->  N =  N1;N = X2).
+
+maxDown(0, Max, Max) :- !.
+maxDown(N, CurM, Max):-N1 is N mod 10, N2 is N div 10,(N1 < CurM -> CurM1 is CurM; CurM1 is N1),maxDown(N2, CurM1, Max).
+maxDown(N, Max):- maxDown(N, 0, Max).
