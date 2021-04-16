@@ -34,3 +34,18 @@ maxUp(X,N):- X1 is X div 10, X2 is X mod 10, maxUp(X1,N1), ( X2<N1 ->  N =  N1;N
 maxDown(0, Max, Max) :- !.
 maxDown(N, CurM, Max):-N1 is N mod 10, N2 is N div 10,(N1 < CurM -> CurM1 is CurM; CurM1 is N1),maxDown(N2, CurM1, Max).
 maxDown(N, Max):- maxDown(N, 0, Max).
+
+%рекурсией вверх
+mn_up(0,0):-!.
+mn_up(N,X):- N1 is N div 10, mn_up(N1,Min1),
+   N2 is N mod 10, (Min1 = 0 -> ((N3 is N2 mod 2, N3 \= 0) -> X = N2 ;
+    X = Min1); (N2 < Min1 -> X = N2 ; X = Min1)).
+
+%рекурсией вниз
+mn_down(N,X):- mn_down(N,0,X).
+mn_down(0,X,X):-!.
+mn_down(N,Curr_min,X):- N1 is N mod 10, N2 is N div 10,
+    ((N3 is N1 mod 2, N3 \= 0) -> (Curr_min = 0 -> Min1 = N1 ; (N1 < Curr_min ->
+    Min1 = N1 ; Min1 = Curr_min)), mn_down(N2,Min1,X) ;
+    mn_down(N2,Curr_min,X)).
+
