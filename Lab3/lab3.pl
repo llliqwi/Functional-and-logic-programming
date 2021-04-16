@@ -54,3 +54,16 @@ nod(A,B,Nod):-A>=B,C is A mod B, nod(C,B,Nod).
 nod(A,B,Nod):-A<B,C is B mod A, nod(A,C,Nod).
 
 
+%рекурсия вверх
+kolvo_nedel3_up(N,X):- kolvo_nedel3_up(N,N,X).
+kolvo_nedel3_up(_,1,1):-!.
+kolvo_nedel3_up(N,I,X):- I1 is I - 1, kolvo_nedel3_up(N,I1,X1),
+    (   (0 is N mod I, N1 is I mod 3, N1\=0) -> X is X1 + 1 ; X = X1).
+
+%рекурсия вниз
+kolvo_nedel3_down(N,X):- kolvo_nedel3_down(N,N,0,X).
+kolvo_nedel3_down(_,0,X,X):-!.
+kolvo_nedel3_down(N,I,P,X):- ((0 is N mod I, N1 is I mod 3, N1\=0)->
+    P1 is P + 1 ; P1 = P),I1 is I - 1, kolvo_nedel3_down(N,I1,P1,X).
+
+
