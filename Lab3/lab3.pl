@@ -27,3 +27,6 @@ sumUp(N,Sum):-N1 is N mod 10, N2 is N div 10, sumUp(N2,Sum1),Sum is Sum1+N1.
 sum(N,X):-sum(N,0,X),!.
 sum(0,CurX,CurX):-!.             
 sum(N,CurX,X):-N1 is N mod 10,N2 is N div 10,X2 is CurX+N1,sum(N2,X2,X).
+
+maxUp(X,X):- X<10,!.         
+maxUp(X,N):- X1 is X div 10, X2 is X mod 10, maxUp(X1,N1), ( X2<N1 ->  N =  N1;N = X2).
