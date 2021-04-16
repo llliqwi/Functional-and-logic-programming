@@ -1,15 +1,15 @@
-max(X,Y,X):-X>Y.
+max(X,Y,X):-X>Y. 
 max(_,Y,Y).
 
 max(X,Y,Z,X):-X>=Y,X>=Z.
-max(_,Y,Z,Y):-Y>=Z.
+max(_,Y,Z,Y):-Y>=Z.      
 max(_,_,Z,Z).
 
 fact(0,1):-!.
-fact(N,X):-N1 is N-1,fact(N1,X1),X is N*X1.
+fact(N,X):-N1 is N-1,fact(N1,X1),X is N*X1.  
 
 fact(1,CurX,CurX):-!.
-fact(N,CurX,X):-N1 is N-1,CurX1 is CurX*N, fact(N1,CurX1,X).
+fact(N,CurX,X):-N1 is N-1,CurX1 is CurX*N, fact(N1,CurX1,X).  
 factorial(N,X):-fact(N,1,X).
 
 fibUp(1,1):-!.                                                     
@@ -27,6 +27,3 @@ sumUp(N,Sum):-N1 is N mod 10, N2 is N div 10, sumUp(N2,Sum1),Sum is Sum1+N1.
 sum(N,X):-sum(N,0,X),!.
 sum(0,CurX,CurX):-!.             
 sum(N,CurX,X):-N1 is N mod 10,N2 is N div 10,X2 is CurX+N1,sum(N2,X2,X).
-
-maxUp(X,X):- X<10,!.         
-maxUp(X,N):- X1 is X div 10, X2 is X mod 10, maxUp(X1,N1), ( X2<N1 ->  N =  N1;N = X2).
