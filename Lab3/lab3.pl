@@ -48,4 +48,9 @@ mn_down(N,Curr_min,X):- N1 is N mod 10, N2 is N div 10,
     ((N3 is N1 mod 2, N3 \= 0) -> (Curr_min = 0 -> Min1 = N1 ; (N1 < Curr_min ->
     Min1 = N1 ; Min1 = Curr_min)), mn_down(N2,Min1,X) ;
     mn_down(N2,Curr_min,X)).
+    
+nod(A,A,A):-!. 
+nod(A,B,Nod):-A>=B,C is A mod B, nod(C,B,Nod).
+nod(A,B,Nod):-A<B,C is B mod A, nod(A,C,Nod).
+
 
