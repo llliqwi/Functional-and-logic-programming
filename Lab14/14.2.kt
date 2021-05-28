@@ -1,10 +1,7 @@
-fun sumDown(y: Int): Int = sumDown(y, 0)
-tailrec fun sumDown(y: Int, sum: Int): Int = if(y == 0) sum else sumDown(y/10,y+y%10)
-
-fun main(args:Array<String>)
-{
-    println("Введите число ->")
-    val x = readLine()!!.toInt()
-    print("Sum: " )
-    println(sumDown(x))
+fun sumDown(num : Int) : Int = sumDown(num, 0)
+tailrec fun sumDown(num : Int, sum : Int): Int = if(num == 0) sum else sumDown(num/10,sum+num%10)
+fun main(args:Array<String>) {
+     print("Введите число ->")
+     val x = readLine()!!.toInt()
+     println("Сумма цифр числа: ${sumDown(x)}")
 }
