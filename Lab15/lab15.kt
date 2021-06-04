@@ -3,7 +3,7 @@ import java.io.BufferedReader
 import kotlin.math.abs
 import kotlin.math.sqrt
 
-// ________________1________________
+
 fun listOp(): List<Int> {
     print("введите размер списка:  ")
     val size = readLine()!!.toInt()
@@ -21,7 +21,6 @@ tailrec fun listOp(a: Iterator<Int>, f: (Int, Int) -> Int, result: Int): Int =
     if (a.iterator().hasNext() == false) result else
         listOp(a, f, f(a.iterator().next(),result))
 
-// ________________3________________
 fun readFromFile(path: String): List<Int> {
     val bufferedReader: BufferedReader = File(path).bufferedReader()
     val inputString = bufferedReader.use {
@@ -51,8 +50,7 @@ fun getList(): () -> List<Int> =
         "keyboard" -> { {listOp()} }
         else -> { {listOp()} }
     }
-
-//_________________7_________________ - циклический сдвиг вправо на 2 позиции
+    
 fun cyclicShift(a: List<Int>): List<Int>
 {
     val l1 = a.drop(2)
@@ -60,7 +58,6 @@ fun cyclicShift(a: List<Int>): List<Int>
     val lNew = l1 + l2
     return lNew
 }
-//_________________8_________________ - нахождение индексов двух минимальных чисел списка
 fun index2min(l: MutableList<Int>) {
     index2minElements(index2minElements(l, l.minOrNull()!!), index2minElements(l, l.minOrNull()!!).minOrNull()!!)
 }
@@ -74,7 +71,6 @@ fun index2minElements(a: MutableList<Int>, min: Int): MutableList<Int> {
         return index2minElements(list,min)
     else return list
 }
-//_________________18_________________ - нахождение чисел до первого минимального
 fun elementsBeforeMin(a: MutableList<Int>) {
     val min = a.minOrNull()
     val index = a.indexOf(min)
@@ -82,7 +78,6 @@ fun elementsBeforeMin(a: MutableList<Int>) {
     for (el in elementsBeforeMin)
         print("$el  ")
 }
-//_________________20_________________ - найти все пропущенные цифры
 fun missingNumbers(max: Int, l: List<Int>, counter: Int, lNew: List<Int>): List<Int> = if (counter == max) lNew else
     if (l.contains(counter) == false){
         missingNumbers(max, l, counter + 1,lNew.plus(counter))
@@ -101,32 +96,26 @@ fun printList(l: List<Int>, counter: Int): List<Int> = if (counter + 1 > l.size)
     if (l.size > counter) { print("${l[counter]}  ")
         printList(l, counter + 1) } else
         printList(l, counter + 1)
-//_________________32_________________ - найти количество локальных максимумов
 fun kolLocMax(l: List<Int>): Int = kolLocMax(l,1,0)
 fun kolLocMax(l: List<Int>, counter: Int, kol: Int): Int = if (counter + 1 > l.size - 1) kol else
     if (l[counter - 1] < l[counter] && l[counter + 1] < l[counter]) kolLocMax(l,counter + 2, kol + 1)
     else kolLocMax(l,counter + 1, kol)
-
-//_________________35_________________ - Дано вещественное число R и массив вещественных чисел. Найти элемент массива, который наиболее близок к данному числу
 fun nearestNumber(l: List<Double>, r: Double) = nearestNumber(l, l[0],r,0)
 fun nearestNumber(l: List<Double>, nearestNumber: Double, r: Double, counter: Int): Double = if (l.size - 1 < counter) nearestNumber else
     if (abs(l[counter] - r) < abs(nearestNumber - r)) nearestNumber(l, l[counter], r, counter + 1)
     else nearestNumber(l,nearestNumber,r,counter + 1)
 
-//_________________38_________________ - Дан целочисленный массив и отрезок a..b. Необходимо найти количество элементов, значение которых принадлежит этому отрезку.
 fun kolElSegment(l: List<Int>, a: Int, b: Int) = kolElSegment(l, a, b, 0, 0)
 fun kolElSegment(l: List<Int>, a: Int, b: Int, counter: Int, kol: Int): Int = if (counter > l.size - 1) kol else
     if (l[counter] >= a && l[counter] <= b) kolElSegment(l,a,b,counter + 1, kol + 1)
     else kolElSegment(l,a,b,counter + 1, kol)
 
-//_________________44_________________ - Дан массив чисел. Необходимо проверить, чередуются ли в нем целые и вещественные числа.
 fun series(l: List<Double>): Boolean = series(l, 0, true)
 fun series(l: List<Double>, counter: Int, result: Boolean): Boolean = if (counter + 1 > l.size - 1) result else
     if (l[counter] == l[counter].toInt().toDouble() && l[counter + 1] == l[counter + 1].toInt().toDouble()
         || l[counter] != l[counter].toInt().toDouble() && l[counter + 1] != l[counter + 1].toInt().toDouble()) series(l, counter + 1, false)
     else series(l, counter + 1, result)
 
-//_________________56_________________ - Для введенного списка посчитать среднее арифметическое непростых элементов, которые больше, чем среднее арифметическое простых.
 fun simpleNumber(x: Int): Boolean = simpleNumber(x, 2, true)
 tailrec fun simpleNumber(x: Int, counter: Int, result: Boolean): Boolean = if (counter  > sqrt(x.toDouble())) result else {
     if (x % counter == 0) simpleNumber(x, counter + 1, false) else
@@ -147,7 +136,7 @@ fun task44(): Double {
     val arithmeticMeanSimple = arithmeticMeanSimple(l,0.0,0.0,0)
     return arithmeticMeanNoSimple(l, 0.0,0.0,0,arithmeticMeanSimple(l,0.0,0.0,0))
 }
-//_____________________9_____________________
+
 fun makeList(): List<Double> {
     val l: MutableList<Double> = mutableListOf()
     return makeList(0.1,l,0).toList()
@@ -186,5 +175,3 @@ fun main() {
     val l1 = getList()
     l1().contains(Int.MIN_VALUE).xor(true).toString()[0]
 }
-
-
